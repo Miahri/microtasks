@@ -139,6 +139,11 @@ function App() {
     {id: 5, title: "GraphQL", isDone: false},
   ]);
 
+  function addBtn(title: string) {
+    let stateCopy = [...tasks, {id: tasks.length + 1, title, isDone: false}];
+    setTasks(stateCopy);
+  }
+
   function removeTask(id: number) {
     let filteredTasks = tasks.filter(t => t.id !== id);
     setTasks(filteredTasks);
@@ -162,6 +167,7 @@ function App() {
         <Todolist title="What to learn"
                   filter={filter}
                   tasks={tasks}
+                  addBtn={addBtn}
                   removeTask={removeTask}
                   changeFilter={changeFilter}
                   deleteHandler={deleteAll}/>
