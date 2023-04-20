@@ -2,18 +2,22 @@ import React from 'react';
 import {FilterValuesType} from './App';
 import {TaskType} from "./Tasks";
 import Input from "./Input"
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type PropsType = {
     title: string
     filter: FilterValuesType
     tasks: Array<TaskType>
     addBtn: (title: string) => void
-    removeTask: (taskId: number) => void
+    removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
     deleteHandler: (tasks: Array<TaskType>) => void
+    children?:React.ReactNode
 }
 
-export function Todolist(props: PropsType) {
+export const Todolist: React.FC<PropsType> = ({children, ...props}) => {
+    const [listRef] = useAutoAnimate<HTMLUListElement>();
+
     let tasksForTodolist = props.tasks;
     const deleteHandler = () => {
         props.deleteHandler(props.tasks);
@@ -32,7 +36,7 @@ export function Todolist(props: PropsType) {
     return <div>
         <h3>{props.title}</h3>
         <Input addBtnClick={props.addBtn}/>
-        <ul>
+        <ul ref={listRef}>
             {
                 tasksForTodolist.map(t => <li key={t.id}>
                     <input type="checkbox" checked={t.isDone}/>
@@ -66,5 +70,6 @@ export function Todolist(props: PropsType) {
                 Delete all tasks
             </button>
         </div>
+        {children}
     </div>
 }

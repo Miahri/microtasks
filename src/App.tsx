@@ -3,6 +3,7 @@ import './App.css';
 import {Tasks, TaskType} from "./Tasks";
 import {Cars, CarType} from "./Cars";
 import {Todolist} from "./Todolist";
+import {v1} from "uuid";
 
 export type FilterValuesType = "all" | "active" | "completed" | "none";
 
@@ -10,8 +11,8 @@ function App() {
   const data1 = {
     title: "What to do",
     tasks: [
-      {id: 1, title: "HTML&CSS2", isDone: true},
-      {id: 2, title: "JS2", isDone: true}
+      {id: v1(), title: "HTML&CSS2", isDone: true},
+      {id: v1(), title: "JS2", isDone: true}
     ],
     students: [
       'Jago Wormald1',
@@ -64,8 +65,8 @@ function App() {
   const data2 = {
     title: "What to learn",
     tasks: [
-      {id: 1, title: "HTML&CSS", isDone: true},
-      {id: 2, title: "JS", isDone: true}
+      {id: v1(), title: "HTML&CSS", isDone: true},
+      {id: v1(), title: "JS", isDone: true}
     ],
     students: [
       'Rick Kane',
@@ -132,22 +133,22 @@ function App() {
   ]
 
   let [tasks, setTasks] = useState([
-    {id: 1, title: "HTML&CSS", isDone: true},
-    {id: 2, title: "JS", isDone: true},
-    {id: 3, title: "ReactJS", isDone: false},
-    {id: 4, title: "Rest API", isDone: false},
-    {id: 5, title: "GraphQL", isDone: false},
+    {id: v1(), title: "HTML&CSS", isDone: true},
+    {id: v1(), title: "JS", isDone: true},
+    {id: v1(), title: "ReactJS", isDone: false},
+    {id: v1(), title: "Rest API", isDone: false},
+    {id: v1(), title: "GraphQL", isDone: false},
   ]);
 
   function addBtn(title: string) {
-    let stateCopy = [...tasks, {id: tasks.length + 1, title, isDone: false}];
+    let stateCopy = [...tasks, {id: v1(), title, isDone: false}];
     setTasks(stateCopy);
     if(filter === 'none') {
       setFilter('all')
     }
   }
 
-  function removeTask(id: number) {
+  function removeTask(id: string) {
     let filteredTasks = tasks.filter(t => t.id !== id);
     setTasks(filteredTasks);
   }
@@ -173,7 +174,11 @@ function App() {
                   addBtn={addBtn}
                   removeTask={removeTask}
                   changeFilter={changeFilter}
-                  deleteHandler={deleteAll}/>
+                  deleteHandler={deleteAll}>
+          <div>
+            <div>Many intresting information</div>
+          </div>
+        </Todolist>
       </div>
   );
 }
