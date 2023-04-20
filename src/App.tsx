@@ -4,6 +4,7 @@ import {Tasks, TaskType} from "./Tasks";
 import {Cars, CarType} from "./Cars";
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
+import AppAxios from "./AppAxios";
 
 export type FilterValuesType = "all" | "active" | "completed" | "none";
 
@@ -179,6 +180,7 @@ function App() {
             <div>Many intresting information</div>
           </div>
         </Todolist>
+        <AppAxios />
       </div>
   );
 }
