@@ -142,6 +142,9 @@ function App() {
   function addBtn(title: string) {
     let stateCopy = [...tasks, {id: tasks.length + 1, title, isDone: false}];
     setTasks(stateCopy);
+    if(filter === 'none') {
+      setFilter('all')
+    }
   }
 
   function removeTask(id: number) {
