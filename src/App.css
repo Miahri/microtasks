@@ -1,11 +1,12 @@
 
 .App {
   padding: 30px;
-  display: flex;
+  display: grid;
 }
 
 .App > div {
   margin-right: 50px;
+  margin-bottom: 30px;
 }
 
 .error {
@@ -23,4 +24,5 @@
 .is-done {
   opacity: 0.5;
 }
+
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 export type TaskType = {
-    taskId: number;
+    id: number;
     title: string;
     isDone: boolean
 }
@@ -21,7 +21,7 @@ export const Tasks = (props: TasksPropsType) => {
     } else {
        tasksForList = props.tasks.map((t: TaskType) => {
            return(
-               <li key={t.taskId}>
+               <li key={t.id}>
                    <input type="checkbox" checked={t.isDone}/>
                    <span>{t.title}</span>
                </li>
